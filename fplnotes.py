@@ -1,4 +1,10 @@
 """
+
+
+myteamid : 278867
+leagueID : 69274
+
+
 Here are the API endpoints for the draft game
 
 https://draft.premierleague.com/api/bootstrap-dynamic
@@ -11,29 +17,43 @@ https://draft.premierleague.com/api/league/{League_ID}/details
 
 https://draft.premierleague.com/api/league/{League_ID}/element-status
 
+
+
 https://draft.premierleague.com/api/draft/league/{League_ID}/trades
+
+All trades between teams given league ID.
+
 
 https://draft.premierleague.com/api/draft/entry/{Team_ID}/transactions
 
-https://draft.premierleague.com/api/pl/event-status
+gives date and time of each transaction given a team ID.
+
 
 https://draft.premierleague.com/api/event/{GW}/live
 
+shows live information about match fixtures
+
 https://draft.premierleague.com/api/entry/{Team_ID}/public
 
-https://draft.premierleague.com/api/entry/{Team_ID}/my-team
+very basic information, kinda useless
+
+
 
 https://draft.premierleague.com/api/draft/{League_ID}/choices
 
-https://draft.premierleague.com/api/watchlist/{Team_ID}
+
+All transfer choices by every player throughout the history of the league.
+kinda hard to decipher, will work on later.
+
 
 https://draft.premierleague.com/api/entry/{Team_ID}/event/{GW}'
 
 
+Given any TeamID and any GW, you can get the full team (15) 
+in elements in order of 2 GK, defense, mid, atk.
 
 
-
-
+-------------------------------------------------------------------
 
 
 
@@ -42,7 +62,8 @@ https://draft.premierleague.com/api/bootstrap-dynamic
 
 Contains information of draft league, each team's bootstrap dynamic can only be
 viewed by the OWNER of that team, i.e information will be provided about the team
-that is logged into that browser.
+that is logged into that browser. 
+
 
 
 
