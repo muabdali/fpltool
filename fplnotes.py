@@ -15,9 +15,11 @@ https://draft.premierleague.com/api/bootstrap-static
 
 https://draft.premierleague.com/api/league/{League_ID}/details
 
+general information about league, such as standings, points etc
+
 https://draft.premierleague.com/api/league/{League_ID}/element-status
 
-
+All free agent transactions.
 
 https://draft.premierleague.com/api/draft/league/{League_ID}/trades
 
@@ -36,7 +38,6 @@ shows live information about match fixtures
 https://draft.premierleague.com/api/entry/{Team_ID}/public
 
 very basic information, kinda useless
-
 
 
 https://draft.premierleague.com/api/draft/{League_ID}/choices
