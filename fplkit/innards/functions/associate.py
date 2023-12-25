@@ -38,7 +38,6 @@ class associate:
             betterplayerIDList = ""
             for entry, player_id in self.playerIDList.items():
                 betterplayerIDList = betterplayerIDList + f"{entry} | {player_id} \n"
-            print(betterplayerIDList)
         else:
             print("No 'league_entries' found in the data.")
         
@@ -47,12 +46,15 @@ class associate:
         self.IDAssociate()
 
 
-        stringStandings = ""
+        stringStandings = "P| NAME |  W  |  L  |  PTS   \n"
         if "standings" in self.data:
             standings = self.data['standings']
             for entry in standings:
-                stringStandings = stringStandings + f"{entry['last_rank']} | {self.entryDict[entry['league_entry']]}\n"
-        print(stringStandings)
+                player_name = self.entryDict.get(entry['league_entry'])  # Retrieve player name or "None" if not found
+                player_name = str(player_name)
+                formatted_name = player_name.ljust(15)  # Adjust the width as needed
+                stringStandings += f"{entry['last_rank']} | {formatted_name} | {entry['matches_won']}   |  {entry['matches_lost']}  |  {entry['total']}\n"
+        return stringStandings
                 
                 
         

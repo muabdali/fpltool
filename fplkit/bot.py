@@ -5,12 +5,11 @@ from innards.functions.associate import *
 
 # GUILD 735830432641318922
 # TOKEN MTE4Njg1NDczNDE1NDQ0NDkwMA.GW5dHh.xnbtkJhQrsetLeMOkeT2qKniPRRxhsYeevoZrU
-
-
-
 import discord
 from discord import app_commands
 
+
+asso = associate()
 
 MY_GUILD = discord.Object(id=735830432641318922)  # replace with your guild id
 
@@ -35,13 +34,18 @@ async def on_ready():
 
 
 @client.tree.command()
+async def standings(interaction: discord.Interaction):
+    botStandings = asso.standings()
+    await interaction.response.send_message(botStandings)
+    
+
+@client.tree.command()
 async def hello(interaction: discord.Interaction):
     """Says hello!"""
     await interaction.response.send_message(f'Hi, {interaction.user.mention}')
 
 @client.tree.command()
 async def memberlist(interaction: discord.Interaction):
-    asso = associate()
     playerList = asso.IDAssociate()
     print(playerList)
     await interaction.response.send_message(playerList)
@@ -71,6 +75,7 @@ async def joined(interaction: discord.Interaction, member: Optional[discord.Memb
     member = member or interaction.user
 
     await interaction.response.send_message(f'{member} joined {discord.utils.format_dt(member.joined_at)}')
+
 
 
 
