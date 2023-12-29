@@ -2,14 +2,13 @@ import discord
 import discord.ext
 from typing import Optional
 from innards.functions.associate import *
-
+# TODO: REMOVE ALL TOKEN INFORMATION TO A SEPERATE FILE ON COMPUTER (HERE AND AT THE BOTTOM)
 # GUILD 735830432641318922
 # TOKEN MTE4Njg1NDczNDE1NDQ0NDkwMA.GW5dHh.xnbtkJhQrsetLeMOkeT2qKniPRRxhsYeevoZrU
 import discord
 from discord import app_commands
 
 
-asso = associate()
 
 MY_GUILD = discord.Object(id=735830432641318922)  # replace with your guild id
 
@@ -51,15 +50,6 @@ async def memberlist(interaction: discord.Interaction):
     await interaction.response.send_message(playerList)
     
 
-
-@client.tree.command()
-@app_commands.describe(
-    first_value='The first value you want to add something to',
-    second_value='The value you want to add to the first value',
-)
-async def add(interaction: discord.Interaction, first_value: int, second_value: int):
-    """Adds two numbers together."""
-    await interaction.response.send_message(f'{first_value} + {second_value} = {first_value + second_value}')
 
 @client.tree.command()
 @app_commands.rename(text_to_send='text')

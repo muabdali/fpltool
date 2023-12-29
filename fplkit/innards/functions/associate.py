@@ -1,28 +1,20 @@
-# main file, contains the information of all members in league
 import requests
 import json
+from tabulate import tabulate
 
-"""
-league_entries
-- gives ID of each user and other informtaion such as full name and join time.
-
-standings
-- gives standings in order from top to bottom, also information such as match wins, losses etc, total points etc.
-
-
-
-"""
-
-class associate:
+class Associate:
     def __init__(self):
         self.playerIDList = {}
+        self.entryDict = {}
         self.League_ID = "69274"
         self.leagueLink = f'https://draft.premierleague.com/api/league/{self.League_ID}/details'
+        self.fetch_data()
+        self.currentMWValue = 0
+        self.draftinfo = "https://draft.premierleague.com/api/game"
+
+    def fetch_data(self):
         response = requests.get(self.leagueLink)
         self.data = json.loads(response.text)
-        self.entryDict = {}
-        
-
 
     def IDAssociate(self):
         if 'league_entries' in self.data:
@@ -33,31 +25,36 @@ class associate:
                 player_id = entry.get('id')
                 self.playerIDList[entry_name] = player_id
                 self.entryDict[player_id] = entry_name
-                #print(f"Entry ID: {entry_id}, Entry Name: {entry_name}, Player ID: {player_id}")
 
-            betterplayerIDList = ""
-            for entry, player_id in self.playerIDList.items():
-                betterplayerIDList = betterplayerIDList + f"{entry} | {player_id} \n"
         else:
             print("No 'league_entries' found in the data.")
         
-        return betterplayerIDList
     def standings(self):
         self.IDAssociate()
 
-
-        stringStandings = "P| NAME |  W  |  L  |  PTS   \n"
+        table_data = []
         if "standings" in self.data:
             standings = self.data['standings']
             for entry in standings:
-                player_name = self.entryDict.get(entry['league_entry'])  # Retrieve player name or "None" if not found
-                player_name = str(player_name)
-                formatted_name = player_name.ljust(15)  # Adjust the width as needed
-                stringStandings += f"{entry['last_rank']} | {formatted_name} | {entry['matches_won']}   |  {entry['matches_lost']}  |  {entry['total']}\n"
-        return stringStandings
-                
-                
-        
-asso = associate()
+                player_id = entry.get('league_entry')
+                player_name = self.entryDict.get(player_id) or "average"  
+                table_data.append([entry['last_rank'], player_name, entry['matches_won'], entry['matches_lost'], entry['total']])
 
-asso.standings()
+        headers = ["P", "NAME", "W", "L", "PTS"]
+        table = tabulate(table_data, headers=headers, tablefmt='orgtbl')
+        return table
+    
+    def currentMatchweek(self):
+        response = requests.get(self.draftinfo)
+        data = json.loads(response.text)
+        self.currentMWValue = data['current_event']
+
+
+
+
+
+asso = Associate()
+# Fetch data first
+asso.fetch_data()
+# Get standings table
+standings_table = asso.currentMatchweek()
