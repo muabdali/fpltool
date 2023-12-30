@@ -48,6 +48,7 @@ class Associate:
         response = requests.get(self.draftinfo)
         data = json.loads(response.text)
         self.currentMWValue = data['current_event']
+        return self.currentMWValue
 
 
 
