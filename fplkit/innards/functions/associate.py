@@ -24,8 +24,8 @@ class Associate:
                 entry_id = entry.get('entry_id')
                 entry_name = entry.get('player_first_name')
                 player_id = entry.get('id')
-                self.playerIDList[entry_name] = player_id
-                self.entryDict[player_id] = entry_name
+                self.playerIDList[entry_name] = entry_id
+                self.entryDict[entry_id] = entry_name
 
 
         else:

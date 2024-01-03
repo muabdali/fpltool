@@ -8,11 +8,19 @@ asso = Associate()
 class matchupFunctions:
     def __init__(self):
         self.playerList = asso.IDAssociate()
-    
-    def test(self):
-        print(self.playerList)
+        self.chosenID = 0
+        self.currentMW = asso.currentMWValue()
+        self.teamInfoLink = f"https://draft.premierleague.com/api/entry/{self.chosenID}/public"
+    def currentPoints(self, playerID):
+        self.chosenID = playerID
+        response = requests.get(self.teamInfoLink)
+        data = json.loads(response.text)
+        print(data)
 
 
 
-done = matchupFunctions()
-done.test()
+        
+
+a = matchupFunctions()
+a.currentPoints()
+
