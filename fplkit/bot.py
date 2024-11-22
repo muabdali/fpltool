@@ -2,9 +2,6 @@ import discord
 import discord.ext
 from typing import Optional
 from innards.functions.associate import *
-# TODO: REMOVE ALL TOKEN INFORMATION TO A SEPERATE FILE ON COMPUTER (HERE AND AT THE BOTTOM)
-# GUILD 735830432641318922
-# TOKEN MTE4Njg1NDczNDE1NDQ0NDkwMA.GW5dHh.xnbtkJhQrsetLeMOkeT2qKniPRRxhsYeevoZrU
 import discord
 from discord import app_commands
 
